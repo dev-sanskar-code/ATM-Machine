@@ -1,9 +1,3 @@
-"""
-main.py
-Entry point for the ATM Machine / Banking System.
-Run this file using: python main.py
-"""
-
 from database import create_tables
 from account import create_account, login
 from atm import atm_menu
