@@ -1,8 +1,3 @@
-"""
-atm.py
-Handles the ATM menu: check balance, deposit, withdraw, mini statement.
-"""
-
 import sqlite3
 from datetime import datetime
 
@@ -10,7 +5,6 @@ from database import get_connection
 
 
 def get_balance(card_id):
-    """Return the current balance for the given card_id."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT balance FROM accounts WHERE card_id = ?", (card_id,))
@@ -20,13 +14,11 @@ def get_balance(card_id):
 
 
 def check_balance(card_id):
-    """Print the current balance."""
     balance = get_balance(card_id)
     print(f"\nYour current balance is: Rs.{balance}")
 
 
 def record_transaction(card_id, t_type, amount, balance):
-    """Insert a row into the transactions table."""
     conn = get_connection()
     cursor = conn.cursor()
     date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -40,7 +32,6 @@ def record_transaction(card_id, t_type, amount, balance):
 
 
 def deposit(card_id):
-    """Deposit money into the account."""
     try:
         amount = float(input("\nEnter amount to deposit: Rs."))
     except ValueError:
@@ -70,7 +61,6 @@ def deposit(card_id):
 
 
 def withdraw(card_id):
-    """Withdraw money from the account if sufficient balance is available."""
     try:
         amount = float(input("\nEnter amount to withdraw: Rs."))
     except ValueError:
@@ -106,7 +96,6 @@ def withdraw(card_id):
 
 
 def mini_statement(card_id):
-    """Show the last 5 transactions for the account."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -128,7 +117,6 @@ def mini_statement(card_id):
 
 
 def atm_menu(card_id):
-    """Show the ATM menu after a successful login."""
     while True:
         print("\n--- ATM Menu ---")
         print("1. Check Balance")
