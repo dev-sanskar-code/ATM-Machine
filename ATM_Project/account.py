@@ -1,8 +1,3 @@
-"""
-account.py
-Handles account creation, Credit Card ID generation, PIN hashing, and login.
-"""
-
 import hashlib
 import random
 import sqlite3
@@ -11,15 +6,10 @@ from database import get_connection
 
 
 def hash_pin(pin):
-    """Hash the PIN using SHA-256 so the original PIN is never stored."""
     return hashlib.sha256(pin.encode()).hexdigest()
 
 
 def generate_card_id():
-    """
-    Generate a unique Credit Card ID in the format VCB followed by
-    6 random digits, e.g. VCB482913.
-    """
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -35,7 +25,6 @@ def generate_card_id():
 
 
 def create_account():
-    """Ask the user for details and create a new account in the database."""
     print("\n--- Create Account ---")
 
     name = input("Enter your full name: ").strip()
@@ -75,10 +64,6 @@ def create_account():
 
 
 def login():
-    """
-    Ask for Credit Card ID and PIN, verify them against the database.
-    Returns the card_id if login is successful, otherwise None.
-    """
     print("\n--- Login ---")
     card_id = input("Enter your Credit Card ID: ").strip()
     pin = input("Enter your PIN: ").strip()
