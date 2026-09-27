@@ -1,20 +1,13 @@
-"""
-database.py
-Handles the SQLite database connection and table creation.
-"""
-
 import sqlite3
 
 DB_NAME = "atm.db"
 
 
 def get_connection():
-    """Return a connection to the SQLite database."""
     return sqlite3.connect(DB_NAME)
 
 
 def create_tables():
-    """Create the accounts and transactions tables if they don't exist."""
     conn = get_connection()
     cursor = conn.cursor()
 
